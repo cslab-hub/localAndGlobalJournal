@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.py
+cwru/__init__.py
+cwru/metadata.txt
+cwru.egg-info/PKG-INFO
+cwru.egg-info/SOURCES.txt
+cwru.egg-info/dependency_links.txt
+cwru.egg-info/not-zip-safe
+cwru.egg-info/requires.txt
+cwru.egg-info/top_level.txt

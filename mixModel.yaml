@@ -1,0 +1,118 @@
+seml:
+  executable: mixModelTrain.py
+  name: mixModelTrain
+  output_dir: logs
+  project_root_dir: .
+
+
+slurm:
+  experiments_per_job: 3
+  max_simultaneous_jobs: 6  # Restrict number of simultaneously running jobs per job array
+  sbatch_options:
+    gres: gpu:1       # num GPUs
+    mem: 200G          # memory
+    cpus-per-task: 30  # num cores
+    time: 1-08:00     # max time, D-HH:MM
+
+fixed:
+  init.nrFolds: 5
+  init.patience: 70
+  init.seed_value: 96
+  init.gtmAbstractions: [max,max+,average,average+,median,median+]
+  model.batchSize: 50
+  model.useEmbed: False # for now removed
+  model.calcOri: True # calc the original model
+  model.doSymbolify: True # symbolify the data (if the data is maybe already symbolified)
+  model.useSaves: True # dont calculate already calcluated model runs
+  model.calcComplexity: True #calculate complexities
+  model.multiVariant: False # not working right now
+  model.skipDebugSaves: False # reduces the saved amount of data
+  model.dropeOutRate: 0.3
+  model.takeAvg: True # False if one specific Transformer layer should be used
+  model.heatLayer: -1 # The Layer which should be used if takeAvg is False
+  model.doLASA: True # Lasa in general
+  model.doBaseLasa: True # Base LASA
+  model.doShapeletsBase: True # Calc Ori and SAX Shapelets
+  model.doShapeletsLASA: True # Calc LASA Shapelets
+  model.doGCR: True # GCR in general
+  model.doOriginalGCR: True # Base GCR
+  model.doThresholdGCR: True # Threshold GCR
+  model.doPenaltyGCR: True # Penalty GCR
+  model.doGIA: False # GIA not performing well
+  model.steps: ['max', 'sum'] #only those two are supported
+  model.layerCombis: ['hl'] # ['lh', 'hl'] as alternative
+  model.doFidelity: False # Calculate the feature fidelity, ie removing high attented values
+
+  model.dmodel: 16
+  
+  model.localMaxThresholds: [[2,3],[1.8,-1]] #[[2,2],[2,3]] #[1.8,-1]] # 
+  model.localAvgThresholds: [[1,1.2],[0.8,1.5]] #[[1,1],[1,1.2]] #,[0.8,1.2]] # 
+  model.globalThresholds: [1.3, 1.6, 1.0] 
+  model.giathreshold: [[0.9,0.9],[0.8,1.2]] #[1.0,1.0],
+  model.penalityModes: [entropy, counter] # only those two are supported
+  model.shapeletLenghts: [2, 0.3] # if smaller 1, the percentage of the full lenght is taken, ie 0.3 = 30% of the dataset lenght, while 2 is just a static 2
+  # config for shapelets
+  model.initial_num_shapelets_per_case: 5
+  model.time_contract_in_mins: 1 #2
+  
+  #options but maybe some won't work out of the box:
+  #      - utc
+  #      - frequency
+  #      - counting
+  #      - cwru
+  #      - gearbox
+  data.dataset: utc
+  data.takename: False #Take UTC names rather than numbers
+  model.limit: 500
+  model.numEpochs: 500
+
+grid:
+  #number of symbols
+  init.symbolCount: 
+    type: choice
+    options: 
+      - 3
+#      - 4
+      - 5
+#      - 9
+
+
+  # possible datasets
+  data.number:
+    type: range
+    min: 0 
+    max: 85
+    step: 1
+
+
+lowLayer:
+  grid:
+    model.header: 
+      type: choice
+      options:
+        - 8
+        - 16 
+    model.dff: 
+      type: choice
+      options:
+        - 8
+    model.numOfAttentionLayers: 
+      type: choice
+      options:
+        - 2
+
+higherLayer:
+  grid:
+    model.header: 
+      type: choice
+      options:
+        - 6 
+    model.dff: 
+      type: choice
+      options:
+        - 6 
+    model.numOfAttentionLayers:
+      type: choice
+      options:
+        - 5
+        #- 8
