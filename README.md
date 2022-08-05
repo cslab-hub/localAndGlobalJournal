@@ -1,6 +1,7 @@
 # localAndGlobalJournal
 Experiment code for LASA and GCR on univariate UCR datasets for the ??? paper. It is based on tensorflow and seml experiments to handle the different configurations.
 
+
 For LASA see also: https://github.com/cslab-hub/LocalTSMHAInterpretability
 For GCR see also: https://github.com/cslab-hub/GlobalTimeSeriesCoherenceMatrices
 
@@ -11,7 +12,8 @@ presults.yaml - seml experiments to process all experiment results into 1 file
 resultProcessing.py - experiment code for the presults.yaml config
 modules - different modules for the different model types + helper
 
-#dependencies:
+# Dependencies:
+
 python==3.7.3
 seml===0.3.6
 tensorflow==2.4.1
