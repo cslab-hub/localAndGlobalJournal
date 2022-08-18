@@ -159,7 +159,7 @@ def makeAttention(attentionQ, x_train1, y_train1, order, step1, step2, num_of_cl
     #for index in range(len(attentionQ[1])):
     #    sumAttention(index, attentionQ[1][index], x_train1s[index], borderHeat, doFidelity, rM, rMP, rMA, rMS, predictions[index], doPenalty, penaltyMode)
 
-    Parallel(n_jobs=14, require='sharedmem', prefer="threads")(delayed(sumAttention)(index, attentionQ[1][index], x_train1s[index], borderHeat, doFidelity, rM, rMP, rMA, rMS, predictions[index], doPenalty, penaltyMode, avgScore) for index in range(len(attentionQ[1]))) #
+    Parallel(n_jobs=14, require='sharedmem', prefer="threads")(delayed(sumAttention)(index, attentionQ[1][index], x_train1s[index], borderHeat, doFidelity, rM, rMP, rMA, rMS, predictions[index], doPenalty, penaltyMode) for index in range(len(attentionQ[1]))) #avgScore
     
     #not parallel
     #for index in range(len(attentionQ[1])):
@@ -252,7 +252,7 @@ def relativeAttentionMaking(lable, valuesA, data_att, rM, rMS, rMA, rMP, doPenal
         rMA[lable]['median+'][toL] = np.median(rMA[lable]['xAvg'][toL], axis=0) 
 
 # sum attention values together into gcr format
-def sumAttention(index, data_att, data_word, borderHeat, doFidelity, rM, rMP, rMA, rMS, predictionsI, doPenalty, penaltyMode, avgScore, retry = 0):
+def sumAttention(index, data_att, data_word, borderHeat, doFidelity, rM, rMP, rMA, rMS, predictionsI, doPenalty, penaltyMode, retry = 0): #avgScore
 
     def validataHeat(value, heat, doFidelity):
         if doFidelity:
@@ -263,7 +263,7 @@ def sumAttention(index, data_att, data_word, borderHeat, doFidelity, rM, rMP, rM
 
     X_ori = data_word
 
-    avgScore[predictionsI].append(np.sum(data_att))
+    #avgScore[predictionsI].append(np.sum(data_att))
     for i in range(len(data_att)):
         for j in range(len(data_att[i])):
             if data_att[i][j] != 0 and validataHeat(data_att[i][j], borderHeat, doFidelity):
