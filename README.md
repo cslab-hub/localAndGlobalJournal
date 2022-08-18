@@ -16,9 +16,9 @@ modules - different modules for the different model types + helper
 
 python==3.7.3
 seml===0.3.6
-tensorflow==2.4.1
+tensorflow-gpu==2.4.1
 tensorflow_addons==0.14.0
-tensorflow_probability==0.13.0
+tensorflow_probability==0.12.2
 seaborn==0.10.1
 scipy==1.4.1
 scikit-learn==0.23.2
