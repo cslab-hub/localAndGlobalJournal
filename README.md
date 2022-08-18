@@ -13,21 +13,29 @@ resultProcessing.py - experiment code for the presults.yaml config
 modules - different modules for the different model types + helper
 
 # Dependencies:
-
 python==3.7.3
-seml===0.3.6
 tensorflow-gpu==2.4.1
-tensorflow_addons==0.14.0
-tensorflow_probability==0.12.2
 seaborn==0.10.1
-scipy==1.4.1
+scipy==1.7.3
 scikit-learn==0.23.2
-pyts==0.11.0
-pandas==1.0.0
-matplotlib==3.3.2
-uea_ucr_datasets==0.1.2
-dill==0.3.5.1
-sktime==0.9.0
-antropy==0.1.4
+pandas==1.3.5
+matplotlib==3.5.1
+ipykernel==6.9.1
+
+tensorflow_addons==0.14.0 
+tensorflow_probability==0.12.2 
+pyts==0.11.0 
+uea_ucr_datasets==0.1.2 
+dill==0.3.5.1 
+antropy==0.1.4 
 tslearn==0.5.2
-#numpy==1.18.5
+sktime==0.9.0 
+
+
+we suggest the following installation:
+conda create -n tsTransformer python==3.7.3 tensorflow-gpu==2.4.1 seaborn==0.10.1 scipy==1.7.3 scikit-learn==0.23.2 pandas==1.3.5 matplotlib==3.5.1 ipykernel==6.9.1
+
+pip install seml===0.3.6 tensorflow_addons==0.14.0 tensorflow_probability==0.12.2 pyts==0.11.0 uea_ucr_datasets==0.1.2 dill==0.3.5.1 antropy==0.1.4 tslearn==0.5.2
+
+Sktime is a bit annoying with the dependencies, but stil works anyway for our purpose, thus we do it separately:
+pip install sktime==0.9.0 
