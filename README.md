@@ -43,7 +43,7 @@ sktime==0.9.0 <br>
 <br>
 2: pip install seml===0.3.6 tensorflow_addons==0.14.0 tensorflow_probability==0.12.2 pyts==0.11.0 uea_ucr_datasets==0.1.2 dill==0.3.5.1 antropy==0.1.4 tslearn==0.5.2<br>
 <br>
-Sktime is a bit annoying with the dependencies, but stil works anyway for our purpose, thus we do it separately:<br>
+Sktime is a bit annoying with the dependencies, but still works anyway for our purpose, thus we do it separately:<br>
 3: pip install sktime==0.9.0 
 
 # How to run
