@@ -38,13 +38,24 @@ tslearn==0.5.2<br>
 sktime==0.9.0 <br>
 <br>
 
-We suggest the following installation:<br>
+## We suggest the following installation:
 1: conda create -n tsTransformer python==3.7.3 tensorflow-gpu==2.4.1 seaborn==0.10.1 scipy==1.7.3 scikit-learn==0.23.2 pandas==1.3.5 matplotlib==3.5.1 ipykernel==6.9.1<br>
 <br>
 2: pip install seml===0.3.6 tensorflow_addons==0.14.0 tensorflow_probability==0.12.2 pyts==0.11.0 uea_ucr_datasets==0.1.2 dill==0.3.5.1 antropy==0.1.4 tslearn==0.5.2<br>
 <br>
 Sktime is a bit annoying with the dependencies, but stil works anyway for our purpose, thus we do it separately:<br>
 3: pip install sktime==0.9.0 
+
+# How to run
+
+1. Set up seml with seml configure <font size="6">(yes you need a mongoDB server for this and yes the results will be saved a in separate file, however seml does a really well job in managing the parameter combinations in combination with slurm) </font>
+2. Configure the yaml file you want to run. Probably you only need to change the number of maximal parallel experiments ('experiments_per_job' and 'max_simultaneous_jobs') and the memory and cpu use ('mem' and 'cpus-per-task').
+3. Add and start the seml experiment. For example like this:
+	1. seml mixModel add mixModel.yaml
+	2. seml mixModel start
+4. Check with "seml mixModel status" till all your experiments are finished 
+5. Please find the results in the results folder. It includes a dict which can be further processed with the code in resultProcessing.py and the seperate presults.yaml file.
+
 
 # Cite and publications
 
